@@ -32,7 +32,7 @@ async def on_message(message):
         try:
             if working == False:
                 working = True
-                get_image(message.content.replace('!craiyon',''))
+                get_image(message.content.replace('c!craiyon',''))
                 print('Got Image | Sending...')
                 await wait.delete()
                 working = False
