@@ -22,9 +22,9 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    if '!craiyon' in message.content:
+    if 'c!craiyon' in message.content:
         global working
-        craiyon_embed = discord.Embed(title=f"Generating {message.content.replace('c!craiyon','')}", url="https://craiyon.com",
+        craiyon_embed = discord.Embed(title=f"Generating{message.content.replace('c!craiyon','')}", url="https://craiyon.com",
                                       description="Craiyon is thinking.. (This may take up to 3 minutes)",
                                       color=0xffae00)
         wait = await message.reply(embed=craiyon_embed)
@@ -54,16 +54,10 @@ async def on_message(message):
 
 def get_image(word):
     global file_name
-
     data = {"prompt": word}
     url = "https://backend.craiyon.com/generate"
-
-
-
     response = requests.post(url, json=data)
-
-    file_name = f'images/{word}{random.randint(0,1000000)}.jpg'
-
+    file_name = f'images/{word[1:]}{random.randint(0,1000000)}.jpg'
     image_dict = (ast.literal_eval(response.content.decode('utf-8')))
     image_string = image_dict['images'][0]
     dec_data = base64.b64decode(image_string)
