@@ -1,0 +1,5 @@
+.env
+image/latest_craiyon.jpg
+env/
+*code-workspace
+__pycache__
